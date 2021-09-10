@@ -1,12 +1,14 @@
 const express = require('express');
+bodyParser = require('body-parser');
 morgan = require('morgan');
+uuid = require('uuid');
 
 const app = express();
 
 let movies = [
   {
     title: ' The Notebook (2004)',
-    director: 'Nick Cassavetes '
+    director: 'Nick Cassavetes ',
   },
   {
     title: 'Titanic (1997)',
@@ -48,16 +50,67 @@ let movies = [
 ];
 
 app.use(morgan('common'));
-
-app.get('/movies', (req, res) => {
-    res.json(movies);
-});
-
 app.use(express.static('public'));
 
 app.get('/', (req, res) => { 
-    res.send('Welcome to the movie app');
+  res.send('Welcome to the movie app');
 });
+
+// Get all Movies
+app.get('/movies', (req, res) => {
+  res.json(movies);
+});
+
+// Get Movies by title
+app.get('/movies/:title', (req, res) => {
+  res.json(movies);
+});
+
+// Get movies by Genres
+app.get('/movies/:genre', (req, res) => {
+  res.json(movies);
+});
+
+// Get movies by Directors Name
+app.get('/directors/:name', (req, res) => {
+  res.json(movies);
+});
+
+// Allow new users to register
+app.post('/users', (req, res) => {
+  let newUsers = req.body
+
+  if(!newUsers.name) {
+    const message = 'Missing name in a request body';
+    res.status(400).send(message);
+  }
+  else {
+    newUsers.id = uuid.v4();
+    users.push(newUsers);
+    res.status(201).send(newUsers);
+  }
+});
+
+//Allow users to update their user info (username)
+app.put('/users/:name', (req, res) => {
+  res.json();
+});
+
+// Allow users to add a movie to their list of favorites
+app.post('/users/:Name/movies/:MovieID', (req, res) => {
+  res.json();
+});
+
+// Allow users to remove a movie from their list of favorites
+app.delete('/users/:Name/movies/:MovieID', (req, res) => {
+
+});
+
+// Allow existing users to deregister
+app.delete('/users/:name', (req, res) => {
+
+});
+
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
