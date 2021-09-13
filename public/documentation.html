@@ -45,7 +45,7 @@
                 </tr>
                 <tr>
                     <td> Data about a director by name </td>
-                    <td> /directors/:name </td>
+                    <td> /director/:name </td>
                     <td> GET </td>
                     <td> Specify director's first name or last name in url</td>
                     <td> A JSON object holding data about a director.</td>
@@ -73,28 +73,28 @@
                 </tr>
                 <tr>
                     <td> Allow users to update their user info (username) </td>
-                    <td> /users/:name </td>
+                    <td> /users/:id </td>
                     <td> PUT</td>
                     <td> None</td>
                     <td> A text message for successfully updated </td>
                 </tr>
                 <tr>
                     <td> Allow users to add a movie to their list of favorites</td>
-                    <td> /users/:Name/movies/:MovieID </td>
+                    <td> /users/:id/movies/:id </td>
                     <td> POST </td>
                     <td> userID added movie as a favourite: movie/[id] gives id to the movie to be added </td>
                     <td> A text message whether the movie added successfully as favourite or not </td>
                 </tr>
                 <tr>
                     <td> Allow users to remove a movie from their list of favorites </td>
-                    <td> /users/:Name/movies/:MovieID </td>
+                    <td> /users/:id/movies/:id </td>
                     <td> DELETE </td>
                     <td> userID deleted movie as a favourite: movie/[id] gives id to the movie to be deleted </td>
                     <td> A text message whether the movie deleted successfully as favourite or not </td>
                 </tr>
                 <tr>
                     <td> Allow existing users to deregister </td>
-                    <td> /users/:name </td>
+                    <td> /users/:id </td>
                     <td> DELETE </td>
                     <td> Remove user from data</td>
                     <td> A text message for successfully removed </td>
