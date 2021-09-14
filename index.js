@@ -7,17 +7,17 @@ const app = express();
 
 let movies = [
   {
-    title: ' The Notebook (2004)',
+    title: 'The Notebook',
     director: 'Nick Cassavetes ',
     genre: 'Romantic drama'
   },
   {
-    title: 'Titanic (1997)',
+    title: 'Titanic',
     director: 'James Cameron',
-    genre: ' Epic romance and disaster'
+    genre: ' Romance and disaster'
   },
   {
-    title: 'Jurassic Park (1993)',
+    title: 'Jurassic Park',
     director: 'Steven Spielberg',
     genre: 'Science fiction action'
   },
@@ -27,34 +27,34 @@ let movies = [
     genre: 'Animated science fiction'
   },
   {
-    title: 'The Lord Of The Rings: The Fellowship Of The Rings (2001)',
+    title: 'The Lord Of The Rings: The Fellowship Of The Rings',
     director: 'Peter Jackson',
     genre: 'Fantasy adventure'
   },
   {
-    title: 'The Lord Of The Rings: The Two Towers (2002)',
+    title: 'The Lord Of The Rings: The Two Towers',
     director: 'Peter Jackson',
     genre: 'Fantasy adventure'
   },
   {
-    title: 'The Lord Of The Rings: The Return Of The King (2003)',
+    title: 'The Lord Of The Rings: The Return Of The King',
     director: 'Peter Jackson',
     genre: 'Fantasy adventure'
   },
   {
     title: 'Toy Story',
     director: 'John Lasseter',
-    genre: 'Computer-animated comedy'
+    genre: 'Animated comedy'
   },
   {
-    title: 'A Star Is Born (2018)',
+    title: 'A Star Is Born',
     director: 'Bradley Cooper',
-    genre: 'Musical romantic drama'
+    genre: 'Romantic drama'
   },
   {
     title: 'Incredibles',
     director: ' Brad Bird',
-    genre: 'Computer-animated superhero film'
+    genre: 'Animated superhero film'
   }
   
 ];
