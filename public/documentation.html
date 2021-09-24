@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <title>Documentation</title>
 </head>
+
 <body>
     <h1> Information: </h1>
     <div class="body-wrapper">
@@ -18,7 +20,7 @@
                     <th><b> HTTP Method </b></th>
                     <th><b> Request Data Format </b></th>
                     <th><b> Response Data Format </b></th>
-                    </tr>
+                </tr>
             </thead>
             <tbody>
                 <tr>
@@ -28,24 +30,24 @@
                     <td> None </td>
                     <td> A JSON object holding data about all the movies </td>
                 </tr>
-                <tr> 
+                <tr>
                     <td> Data about a single movie by title to the user</td>
-                    <td> /movies/:title </td>
+                    <td> /movies/:Title </td>
                     <td> GET </td>
                     <td> None </td>
-                    <td>  A JSON object holding data about a single movie </td>
+                    <td> A JSON object holding data about a single movie </td>
                 </tr>
                 <tr>
                     <td> Data about a genre by name/title (e.g., “Thriller”) </td>
-                    <td> /movies/:genre </td>
+                    <td> /genre/:Name </td>
                     <td> GET </td>
                     <td> None </td>
                     <td> A JSON object holding data about all genres: <br>
-                    Example: {<br> "name" : "Thriller" <br> } </td>
+                        Example: {<br> "name" : "Thriller" <br> } </td>
                 </tr>
                 <tr>
                     <td> Data about a director by name </td>
-                    <td> /director/:name </td>
+                    <td> /director/:Name </td>
                     <td> GET </td>
                     <td> Specify director's first name or last name in url</td>
                     <td> A JSON object holding data about a director.</td>
@@ -54,11 +56,11 @@
                     <td> Allow new users to register </td>
                     <td> /users </td>
                     <td> POST </td>
-                    <td> A JSON object holding data about the user to add <br> 
-                    Examole: { <br> "name" : " User1" <br> 
-                                    "Password" : <br> 
-                                    "Email" : "user1@hotmail.com" <br>
-                             }
+                    <td> A JSON object holding data about the user to add <br>
+                        Examole: { <br> "name" : " User1" <br>
+                        "Password" : <br>
+                        "Email" : "user1@hotmail.com" <br>
+                        }
                     </td>
                     <td> A JSON object holding data
                         about the users that was
@@ -73,28 +75,28 @@
                 </tr>
                 <tr>
                     <td> Allow users to update their user info (username) </td>
-                    <td> /users/:id </td>
+                    <td> /users/:Username </td>
                     <td> PUT</td>
                     <td> None</td>
                     <td> A text message for successfully updated </td>
                 </tr>
                 <tr>
                     <td> Allow users to add a movie to their list of favorites</td>
-                    <td> /users/:id/movies/:id </td>
+                    <td> /users/:Username/movies/:MovieID </td>
                     <td> POST </td>
                     <td> userID added movie as a favourite: movie/[id] gives id to the movie to be added </td>
                     <td> A text message whether the movie added successfully as favourite or not </td>
                 </tr>
                 <tr>
                     <td> Allow users to remove a movie from their list of favorites </td>
-                    <td> /users/:id/movies/:id </td>
+                    <td> /users/:Username/movies/:MovieID </td>
                     <td> DELETE </td>
                     <td> userID deleted movie as a favourite: movie/[id] gives id to the movie to be deleted </td>
                     <td> A text message whether the movie deleted successfully as favourite or not </td>
                 </tr>
                 <tr>
                     <td> Allow existing users to deregister </td>
-                    <td> /users/:id </td>
+                    <td> /users/:Username </td>
                     <td> DELETE </td>
                     <td> Remove user from data</td>
                     <td> A text message for successfully removed </td>
@@ -105,4 +107,5 @@
     </div>
 
 </body>
+
 </html>
