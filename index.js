@@ -5,17 +5,18 @@ uuid = require('uuid');
 mongoose = require('mongoose');
 Models = require('./models.js');
 
-const app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-
 const Movies = Models.Movie;
 const Users = Models.User;
 const Genres = Models.Genre;
 const Directors = Models.Director;
 
-mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true, useUnifieldTopology: true });
+mongoose.connect('mongodb://localhost:27017/test',
+  {
+    useNewUrlParser: true,
+    useUnifieldTopology: true
+  });
+
+const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
