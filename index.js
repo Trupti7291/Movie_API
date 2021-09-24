@@ -1,9 +1,10 @@
 const express = require('express');
+const { model } = require('mongoose');
 bodyParser = require('body-parser');
 morgan = require('morgan');
 uuid = require('uuid');
 mongoose = require('mongoose');
-Models = require('./models.js');
+const Models = require('./models.js');
 
 const app = express();
 app.use(bodyParser.json());
