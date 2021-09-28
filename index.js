@@ -10,6 +10,8 @@ const Users = Models.User;
 const Genres = Models.Genre;
 const Directors = Models.Director;
 
+const cors = require('cors');
+
 mongoose.connect('mongodb://localhost:27017/test',
   {
     useNewUrlParser: true,
@@ -21,6 +23,19 @@ const app = express();
 app.use(morgan('common'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
+      return callback(new Error(message), false);
+    }
+    return callback(null, true);
+  }
+}));
 
 let auth = require('./auth')(app);
 
@@ -91,6 +106,7 @@ app.get('/users', passport.authenticate('jwt', { session: false }), (req, res) =
 
 // Allow new users to register
 app.post('/users', passport.authenticate('jwt', { session: false }), (req, res) => {
+  let hashPassword = Users.hashPassword(req.body.Password);
   Users.findOne({ Username: req.body.Username })
     .then((user) => {
       if (user) {
@@ -99,7 +115,7 @@ app.post('/users', passport.authenticate('jwt', { session: false }), (req, res) 
         Users
           .create({
             Username: req.body.Username,
-            Password: req.body.Password,
+            Password: hashPassword,
             Email: req.body.Email,
             Birthday: req.body.Birthday
           })
