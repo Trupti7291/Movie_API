@@ -5,6 +5,7 @@ uuid = require('uuid');
 mongoose = require('mongoose');
 Models = require('./models.js');
 
+const app = express();
 const Movies = Models.Movie;
 const Users = Models.User;
 const Genres = Models.Genre;
@@ -12,17 +13,15 @@ const Directors = Models.Director;
 
 const cors = require('cors');
 
-mongoose.connect('mongodb://localhost:27017/test',
-  {
-    useNewUrlParser: true,
-    useUnifieldTopology: true
-  });
-
-const app = express();
-
-app.use(morgan('common'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(morgan('common'));
+app.use(express.static('public'));
+
+let auth = require('./auth')(app);
+
+const passport = require('passport');
+require('./passport');
 
 let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
 
@@ -37,12 +36,7 @@ app.use(cors({
   }
 }));
 
-let auth = require('./auth')(app);
-
-const passport = require('passport');
-require('./passport');
-
-app.use(express.static('public'));
+mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.get('/', (req, res) => {
   res.send('Welcome to the movie app');
@@ -53,8 +47,13 @@ app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) 
   Movies.find()
     .then((movies) => {
       res.status(201).json(movies);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
     });
 });
+
 
 // Get Movies by title
 app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req, res) => {
