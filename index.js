@@ -12,6 +12,7 @@ const Users = Models.User;
 const Genres = Models.Genre;
 const Directors = Models.Director;
 
+mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true, useUnifiedTopology: true });
 const cors = require('cors');
 
 app.use(bodyParser.json());
@@ -37,7 +38,7 @@ app.use(cors({
   }
 }));
 
-mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true, useUnifiedTopology: true });
+
 
 app.get('/', (req, res) => {
   res.send('Welcome to the movie app');
