@@ -106,7 +106,9 @@ app.get('/users', passport.authenticate('jwt', { session: false }), (req, res) =
 });
 
 // Allow new users to register
-app.post('/users', passport.authenticate('jwt', { session: false }),
+app.post('/users',
+  // passport.authenticate('jwt', { session: false }),
+
   [
     check('Username', 'Username is required').isLength({ min: 5 }),
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
