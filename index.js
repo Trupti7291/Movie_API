@@ -17,7 +17,7 @@ const cors = require('cors');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(morgan('common'));
+// app.use(morgan('common'));
 app.use(express.static('public'));
 
 let auth = require('./auth')(app);
@@ -119,12 +119,13 @@ app.post('/users', [
       if (user) {
         return res.status(400).send(req.body.Username + 'already exists');
       } else {
+        let hashPassword = Users.hashPassword(req.body.Password);
         console.log(req.body.Username)
         Users
           .create({
             Username: req.body.Username,
             Email: req.body.Email,
-            Password: req.body.Password,
+            Password: hashPassword,
             Birthday: req.body.Birthday
           })
           .then((user) => { res.status(201).json(user) })
