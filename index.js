@@ -115,14 +115,12 @@ app.post('/users', [
   check("Password", "Password is required").not().isEmpty(),
   check("Email", "Email does not appear to be valid").isEmail()
 ], (req, res) => {
-  console.log(req.body)
   Users.findOne({ Username: req.body.Username })
     .then((user) => {
       if (user) {
         return res.status(400).send(req.body.Username + 'already exists');
       } else {
         let hashPassword = Users.hashPassword(req.body.Password);
-        console.log(req.body.Username)
         Users
           .create({
             Username: req.body.Username,
@@ -160,8 +158,8 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }), (r
   Users.findOneAndUpdate({ Username: req.params.Username }, {
     $set: {
       Username: req.body.Username,
-      Password: req.body.Password,
       Email: req.body.Email,
+      Password: hashPassword,
       Birthday: req.body.Birthday
     }
   },
