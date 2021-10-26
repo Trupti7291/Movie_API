@@ -17,16 +17,6 @@ mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnified
 
 const cors = require('cors');
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(morgan('common'));
-app.use(express.static('public'));
-
-let auth = require('./auth')(app);
-
-const passport = require('passport');
-require('./passport');
-
 let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'http://testsite.com'];
 
 app.use(cors({
@@ -39,6 +29,17 @@ app.use(cors({
     return callback(null, true);
   }
 }));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(morgan('common'));
+app.use(express.static('public'));
+
+let auth = require('./auth')(app);
+
+const passport = require('passport');
+require('./passport');
+
 
 app.get('/', (req, res) => {
   res.send('Welcome to the movie app');
