@@ -6,17 +6,6 @@ mongoose = require('mongoose');
 Models = require('./models.js');
 const { check, validationResult } = require('express-validator');
 
-const app = express();
-const Movies = Models.Movie;
-const Users = Models.User;
-const Genres = Models.Genre;
-const Directors = Models.Director;
-
-// mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-
-const cors = require('cors');
-
 let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'http://testsite.com'];
 
 app.use(cors({
@@ -29,6 +18,17 @@ app.use(cors({
     return callback(null, true);
   }
 }));
+
+const app = express();
+const Movies = Models.Movie;
+const Users = Models.User;
+const Genres = Models.Genre;
+const Directors = Models.Director;
+
+// mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
+const cors = require('cors');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
