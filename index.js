@@ -20,8 +20,8 @@ const cors = require('cors');
 
 let allowedOrigins = [
   'http://localhost:8080',
-  "Access-Control-Allow-Origin", "*",
-  "Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT",
+  'Access-Control-Allow-Origin', "*",
+  'Access-Control-Allow-Methods', "GET, POST, OPTIONS, PUT",
   'http://localhost:1234',
   'http://localhost:4200',
   'http://testsite.com',
