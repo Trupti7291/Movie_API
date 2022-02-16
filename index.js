@@ -18,7 +18,15 @@ mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnified
 
 const cors = require('cors');
 
-let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'http://localhost:4200', "Access-Control-Allow-Methods", "GET, OPTIONS, POST, PUT", 'http://testsite.com', 'https://interflix.netlify.app'];
+let allowedOrigins = [
+  'http://localhost:8080',
+  'http://localhost:1234',
+  'http://localhost:4200',
+  "Access-Control-Allow-Methods",
+  "GET, OPTIONS, POST, PUT",
+  'http://testsite.com',
+  'https://interflix.netlify.app'
+];
 
 app.use(cors({
   origin: (origin, callback) => {
