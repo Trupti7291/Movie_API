@@ -20,10 +20,10 @@ const cors = require('cors');
 
 let allowedOrigins = [
   'http://localhost:8080',
+  "Access-Control-Allow-Origin", "*",
+  "Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT",
   'http://localhost:1234',
   'http://localhost:4200',
-  "Access-Control-Allow-Methods",
-  "GET, OPTIONS, POST, PUT",
   'http://testsite.com',
   'https://interflix.netlify.app'
 ];
@@ -38,7 +38,7 @@ app.use(cors({
     return callback(null, true);
   }
 }));
-
+// app.use(allowedOrigins);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(morgan('common'));
