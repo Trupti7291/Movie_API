@@ -40,14 +40,14 @@ app.use(cors({
 }));
 
 app.options('*', cors());
-let allowedOrigins = function (req, res, next) {
+let OriginsAllowed = function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   next();
 };
 
-app.use(allowedOrigins);
+app.use(OriginsAllowed);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(morgan('common'));
